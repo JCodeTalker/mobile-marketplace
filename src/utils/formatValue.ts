@@ -1,4 +1,4 @@
-const formatValue = value => (value) =>
+const formatValue = (value: number) =>
 Intl.NumberFormat('pt-br', {
   style: 'currency',
   currency: 'BRL'

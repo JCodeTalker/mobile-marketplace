@@ -44,7 +44,7 @@ export default function Routes() {
               marginLeft: 20,
             },
             headerBackImage: () => (
-              <FeatherIcon name="chevron-left" size={24} color="f3f9ff" />
+              <FeatherIcon name="chevron-left" size={24} color="#f3f9ff" />
             )
           }}
         />

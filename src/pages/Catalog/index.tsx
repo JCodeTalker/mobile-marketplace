@@ -50,7 +50,6 @@ export default function App() {
               <ProductTitle> {item.title} </ProductTitle>
               <PriceContainer>
                 <ProductPrice>
-                  R${item.price}
                   {formatValue(item.price)}
                 </ProductPrice>
                 <ProductButton onPress={() => {}} >
