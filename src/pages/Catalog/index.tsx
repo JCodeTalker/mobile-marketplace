@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ListRenderItem } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -17,6 +17,9 @@ import {
   ProductButton,
   ProductButtonText
  } from './styles';
+import api from '../../services/api';
+import * as CartActions from '../../store/modules/cart/actions'
+import { useDispatch } from "react-redux";
 
 type productType = {
     id: string,
@@ -25,13 +28,21 @@ type productType = {
     price: number,
 }
 
-export default function App() {
-  const [products, setProducts] = useState<productType[]>([{
-    id: '1',
-    title: 'Assinatura Trimestral',
-    image_url: 'https://res.cloudinary.com/robertosousa1/image/upload/v1594492578/dio/quarterly_subscription_yjolpc.pn',
-    price: 150,
-  }])
+export default function Catalog() {
+  const dispatch = useDispatch()
+  const [products, setProducts] = useState<productType[]>([])
+
+  useEffect(() => {
+    async function loadProducts() {
+      const { data } = await api.get('/products')
+      setProducts(data)
+    }
+    loadProducts()
+  }, [])
+
+  function handleAddToCart(id: string) {
+    dispatch(CartActions.addToCartRequest(parseInt(id)))
+  }
   return (
     <Container>
       <ProductContainer>
@@ -52,7 +63,7 @@ export default function App() {
                 <ProductPrice>
                   {formatValue(item.price)}
                 </ProductPrice>
-                <ProductButton onPress={() => {}} >
+                <ProductButton onPress={() => {handleAddToCart(item.id)}} >
                 <ProductButtonText>adicionar</ProductButtonText>
                 <FeatherIcon size={30} name="plus-circle" color="#d1d7e9" />
                 </ProductButton>

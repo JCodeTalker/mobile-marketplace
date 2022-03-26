@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { 
   CardButton,
   CartButtonText,
@@ -10,20 +10,41 @@ import {
  import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
 import { RootStackParamList } from "../../routes";
-
+import { useSelector } from 'react-redux';
+import { actionType } from '../../store/modules/cart/actions';
+import { productType } from '../../pages/Cart';
+import formatValue from '../../utils/formatValue';
 
 type floatingCartProp = StackNavigationProp<RootStackParamList>;
+interface cartContent extends productType {
+  amount: number,
+  priceFormatted: string
+}
 
  export default function FloatingCart() {
    const navigation = useNavigation<floatingCartProp>()
+   const products = useSelector(({cart} : {cart: cartContent[]}) => cart)
+
+   const cartSize = useMemo(() => {
+     return products.length || 0
+   }, [products])
+
+   const cartTotal = useMemo(() => {
+     const cartAmount = products.reduce((previousValue, product) => {
+       const totalPrice = previousValue + product.price * product.amount
+       return totalPrice 
+      }, 0)
+      
+      return formatValue(cartAmount)
+   }, [products])
+   
    return (
      <Container>
        <CardButton onPress={() => navigation.navigate("Cart")}>
-       {/* <CardButton onPress={() => navigation.navigate({ name:"Cart" })}> */}
          <FeatherIcon name="shopping-cart" size={24} color="#f3f9ff" />
-         <CartButtonText>2 itens</CartButtonText>
+         <CartButtonText>{cartSize} {cartSize === 1 ? "item" : "itens"}</CartButtonText>
          <CartPricing>
-           <CartTotalPrice>R$ 200,00</CartTotalPrice>
+           <CartTotalPrice>{cartTotal}</CartTotalPrice>
          </CartPricing>
          <FeatherIcon name="chevron-right" size={24} color="#f3f9ff" />
        </CardButton>

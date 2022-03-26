@@ -1,7 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack"; // for screen transaction
-import type { StackNavigationProp } from "@react-navigation/stack"; // for screen transaction
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import Catalog from './pages/Catalog'
 import Header from "./components/Header";
@@ -12,7 +11,6 @@ export type RootStackParamList = {
   Catalog: undefined;
 }
 
-// export type Props = StackNavigationProp<RootStackParamList, "Cart">
 const Stack = createStackNavigator<RootStackParamList>()
 
 export default function Routes() {

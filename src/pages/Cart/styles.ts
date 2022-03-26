@@ -34,8 +34,8 @@ export const ProductImage = styled.Image`
   height: 92px;
   width: 140px;
 `
-
-export const ProductTitleContainer = styled.Text`
+//
+export const ProductTitleContainer = styled.View`
   font-size: 16px;
   margin-left: 5px;
   margin-top: 10px;
@@ -44,8 +44,8 @@ export const ProductTitleContainer = styled.Text`
 export const ProductTitle = styled.Text`
   font-size: 16px;
 `
-
-export const ProductPriceContainer = styled.Text`
+//
+export const ProductPriceContainer = styled.View`
   flex-direction: column;
   `
   
@@ -54,32 +54,31 @@ export const ProductPriceContainer = styled.Text`
   margin-top: 8px;
 `
 
-export const ProductSinglePrice = styled.View`
+export const ProductSinglePrice = styled.Text`
  font-size: 12px;
  margin-top: 8px;
  color: #414756; 
 `
-export const ProductPrice = styled.View`
+export const ProductPrice = styled.Text`
  font-size: 16px;
  margin-top: 5px;
  color: #e83f5b;
  font-weight: bold;
 `
 
-export const ProductQuantity = styled.View`
+export const ProductQuantity = styled.Text`
  font-size: 16px;
  margin-top: 5px;
- margin-top: 10px;
+ margin-right: 10px;
  color: #e83f5b;
  font-weight: bold;
 `
 
-
-export const ActionQuantity = styled.View`
-align-self: flex-end;
-align-items: center;
-justify-content: space-between;
-margin-left: auto;
+export const ActionContainer = styled.View`
+  align-self: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
 `
 
 export const ActionButton = styled.TouchableOpacity`
@@ -89,13 +88,13 @@ export const ActionButton = styled.TouchableOpacity`
   margin-bottom: 5px;
   `
 
-export const TotalProductContainer = styled.View`
+export const TotalProductsContainer = styled.View`
     bottom: 0;
     position: absolute;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 36px;
+    padding: 36px 40px;
     border-radius: 10px;
     background: #e83f5b;
   `
