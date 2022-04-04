@@ -1,6 +1,5 @@
 import { productType } from "../../../pages/Cart"
 
-
 export type actionType = {
   type: string,
   product?: productType,

@@ -43,6 +43,7 @@ export default function Catalog() {
   function handleAddToCart(id: string) {
     dispatch(CartActions.addToCartRequest(parseInt(id)))
   }
+  
   return (
     <Container>
       <ProductContainer>
